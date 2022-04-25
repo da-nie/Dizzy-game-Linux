@@ -29,14 +29,14 @@ static std::string CaptionName("Dizzy Game v1.0");
 //----------------------------------------------------------------------------------------------------
 CMainWindow::CMainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::CMainWindow)
 {
- ui->setupUi(this);
+ ui->setupUi(this); 
+ setWindowTitle(tr(CaptionName.c_str()));
 
  Left=false;
  Right=false;
  Up=false;
  Down=false;
  Fire=false;
-
 
  qImage=QImage(CGame::SCREEN_WIDTH,CGame::SCREEN_HEIGHT,QImage::Format_ARGB32_Premultiplied);
  iVideo_Ptr.reset(IVideo::CreateNewCVideoSoftware(CGame::SCREEN_WIDTH,CGame::SCREEN_HEIGHT));
@@ -71,19 +71,14 @@ void CMainWindow::timerEvent(QTimerEvent *qTimerEvent_Ptr)
 
  static int32_t tick=0;
  tick++;
- tick%=2;
- if (tick==0)
+ tick%=30;
+ if (tick!=0) return;
+ if (Enabled==false)
  {
-//  Paint(hWnd,0,0);
   update();
   return;
  }
- if (Enabled==false) return;
  cGame_Ptr->OnTimer(Left,Right,Up,Down,Fire,iVideo_Ptr.get());
-
- //QPixmap qPixmap=QPixmap::fromImage(qImage);
- //ui->CLabelArea->setPixmap(qPixmap.scaled(ui->CLabelArea->width(),ui->CLabelArea->height(),Qt::KeepAspectRatio));
-
  update();
 }
 
@@ -118,9 +113,9 @@ void CMainWindow::paintEvent(QPaintEvent *qPaintEvent_Ptr)
   }
  }
 
- QPixmap qPixmap=QPixmap::fromImage(qImage); 
+ QPixmap qPixmap=QPixmap::fromImage(qImage);
  QPainter qPainter(this);
- //qPainter.setRenderHint(QPainter::Antialiasing,true);
+// qPainter.setRenderHint(QPainter::Antialiasing,true);
  float aspect=static_cast<float>(CGame::SCREEN_WIDTH)/static_cast<float>(CGame::SCREEN_HEIGHT);
  uint32_t new_width=static_cast<uint32_t>(aspect*this->height());
  uint32_t new_height=this->height();
@@ -131,14 +126,13 @@ void CMainWindow::paintEvent(QPaintEvent *qPaintEvent_Ptr)
  }
  uint32_t ox=(this->width()-new_width)/2;
  uint32_t oy=(this->height()-new_height)/2;
-// qPainter.drawPixmap(0,0,this->width(),this->height(),qPixmap);
+ //qPainter.drawPixmap(0,0,this->width(),this->height(),qPixmap);
  qPainter.fillRect(0,0,this->width(),this->height(),Qt::black);
  qPainter.drawPixmap(ox,oy,new_width,new_height,qPixmap);
 
  //QPainter qPainter(this);
  //qPainter.drawImage(0,0,qImage.scaled(this->width(),this->height(),Qt::KeepAspectRatio)); - так гораздо медленнее
 }
-
 //----------------------------------------------------------------------------------------------------
 //обработчик нажатия клавиши
 //----------------------------------------------------------------------------------------------------
@@ -149,9 +143,10 @@ void CMainWindow::keyPressEvent(QKeyEvent *pe)
  if (pe->key()==Qt::Key_Up) Up=true;
  if (pe->key()==Qt::Key_Down) Down=true;
  if (pe->key()==Qt::Key_Space) Fire=true;
+ if (pe->key()==Qt::Key_Escape) close();
 }
 //----------------------------------------------------------------------------------------------------
-//обработчик отпускание клавиши
+//обработчик отпускания клавиши
 //----------------------------------------------------------------------------------------------------
 void CMainWindow::keyReleaseEvent(QKeyEvent *pe)
 {
