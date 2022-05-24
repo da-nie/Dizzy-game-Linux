@@ -3,8 +3,8 @@
 //****************************************************************************************************
 #include "cgame.h"
 #include "cpart.h"
-#include "csyntaxanalyzer.h"
-#include "system.h"
+#include "../Interpreter/csyntaxanalyzer.h"
+#include "../System/system.h"
 #include <algorithm>
 #include <memory>
 #include <deque>
@@ -30,7 +30,7 @@ static const char MAP_FILE_NAME[]="./map.gam";//имя файла карты
 //конструктор
 //----------------------------------------------------------------------------------------------------
 CGame::CGame(void)
-{
+{ 
  cSprite_Dizzy.Load("./Sprites/dizzy.tga");
  cSprite_Dizzy.SetAlpha(0,BLEND_COLOR_R,BLEND_COLOR_G,BLEND_COLOR_B);
 
@@ -843,7 +843,6 @@ bool CGame::LoadMap(const std::string &file_name)
  std::ifstream file;
  file.open(file_name,std::ios_base::in|std::ios_base::binary);
  if (file.is_open()==false) return(false);
-
  //загружаем список элементов карты
  uint32_t part;
  if (file.read(reinterpret_cast<char*>(&part),sizeof(part)).fail()==true) return(false);
@@ -1191,7 +1190,6 @@ bool CGame::Init(IVideo *iVideo_Ptr)
  cGameState.Map.clear();
  cGameState.MapNamed.clear();
  cGameState.QuadricTree_Ptr.reset();
-
  if (LoadMap(MAP_FILE_NAME)==false)
  {
   std::string message="Не могу открыть файл карты "+std::string(MAP_FILE_NAME)+" !";  
@@ -1224,9 +1222,6 @@ bool CGame::Init(IVideo *iVideo_Ptr)
 
  //перемещаем карту
  MoveMap(iVideo_Ptr);
-
- printf("Init...\r\n");
-
  return(true);
 }
 

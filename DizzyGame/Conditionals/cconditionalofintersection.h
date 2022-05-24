@@ -9,7 +9,7 @@
 //подключаемые библиотеки
 //****************************************************************************************************
 #include "iconditionalexpression.h"
-#include "iaction.h"
+#include "../Actions/iaction.h"
 #include <string>
 #include <stdint.h>
 

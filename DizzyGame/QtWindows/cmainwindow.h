@@ -11,8 +11,8 @@
 #include <QMainWindow>
 #include <stdint.h>
 #include <memory>
-#include "ivideo.h"
-#include "cgame.h"
+#include "../Video/ivideo.h"
+#include "../Game/cgame.h"
 
 //****************************************************************************************************
 //пространства имён

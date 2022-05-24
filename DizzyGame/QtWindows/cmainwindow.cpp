@@ -29,7 +29,7 @@ static std::string CaptionName("Dizzy Game v1.0");
 //----------------------------------------------------------------------------------------------------
 CMainWindow::CMainWindow(QWidget *parent):QMainWindow(parent),ui(new Ui::CMainWindow)
 {
- ui->setupUi(this); 
+ ui->setupUi(this);
  setWindowTitle(tr(CaptionName.c_str()));
 
  Left=false;

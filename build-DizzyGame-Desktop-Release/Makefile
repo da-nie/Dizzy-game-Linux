@@ -15,8 +15,8 @@ EQ            = =
 CC            = gcc
 CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
-CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CFLAGS        = -pipe -Wno-unused-parameter -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -Wno-unused-parameter -std=c++11 -O2 -Wall -W -Wno-unused-parameter -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I../DizzyGame -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
@@ -52,56 +52,54 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../DizzyGame/main.cpp \
-		../DizzyGame/cmainwindow.cpp \
-		../DizzyGame/cactionadditem.cpp \
-		../DizzyGame/cactionaddlife.cpp \
-		../DizzyGame/cactionaddscore.cpp \
-		../DizzyGame/cactionchangeanimationmode.cpp \
-		../DizzyGame/cactionchangedescription.cpp \
-		../DizzyGame/cactionchangedescriptionglobal.cpp \
-		../DizzyGame/cactionchangename.cpp \
-		../DizzyGame/cactionchangenameglobal.cpp \
-		../DizzyGame/cactionchangeposition.cpp \
-		../DizzyGame/cactioncopyposition.cpp \
-		../DizzyGame/cactioncopypositionoffset.cpp \
-		../DizzyGame/cactionenergyupdate.cpp \
-		../DizzyGame/cactionmessage.cpp \
-		../DizzyGame/cactionmove.cpp \
-		../DizzyGame/cactionpickup.cpp \
-		../DizzyGame/cactionsetanimationstep.cpp \
-		../DizzyGame/cactionsetenabled.cpp \
-		../DizzyGame/cactionsingle.cpp \
-		../DizzyGame/cautomath.cpp \
-		../DizzyGame/cconditionalofdizzyintersection.cpp \
-		../DizzyGame/cconditionalofintersection.cpp \
-		../DizzyGame/cconditionalofnotdizzyintersection.cpp \
-		../DizzyGame/cconditionalofpickup.cpp \
-		../DizzyGame/cconditionaloftimer.cpp \
-		../DizzyGame/cconditionalofuse.cpp \
-		../DizzyGame/cdizzy.cpp \
-		../DizzyGame/cfontprinter.cpp \
-		../DizzyGame/cgame.cpp \
-		../DizzyGame/cgamestate.cpp \
-		../DizzyGame/clexeme.cpp \
-		../DizzyGame/clexicalanalyzer.cpp \
-		../DizzyGame/cpart.cpp \
-		../DizzyGame/craiifilein.cpp \
-		../DizzyGame/craiifileout.cpp \
-		../DizzyGame/csprite.cpp \
-		../DizzyGame/csyntaxanalyzer.cpp \
-		../DizzyGame/ctile.cpp \
-		../DizzyGame/ctilessequence.cpp \
-		../DizzyGame/cvideo_software.cpp \
-		../DizzyGame/iaction.cpp \
-		../DizzyGame/iconditionalexpression.cpp \
-		../DizzyGame/ipart.cpp \
-		../DizzyGame/ivideo.cpp \
-		../DizzyGame/system.cpp \
-		../DizzyGame/tga.cpp moc_cmainwindow.cpp
-OBJECTS       = main.o \
-		cmainwindow.o \
-		cactionadditem.o \
+SOURCES       = ../DizzyGame/Actions/cactionadditem.cpp \
+		../DizzyGame/Actions/cactionaddlife.cpp \
+		../DizzyGame/Actions/cactionaddscore.cpp \
+		../DizzyGame/Actions/cactionchangeanimationmode.cpp \
+		../DizzyGame/Actions/cactionchangedescription.cpp \
+		../DizzyGame/Actions/cactionchangedescriptionglobal.cpp \
+		../DizzyGame/Actions/cactionchangename.cpp \
+		../DizzyGame/Actions/cactionchangenameglobal.cpp \
+		../DizzyGame/Actions/cactionchangeposition.cpp \
+		../DizzyGame/Actions/cactioncopyposition.cpp \
+		../DizzyGame/Actions/cactioncopypositionoffset.cpp \
+		../DizzyGame/Actions/cactionenergyupdate.cpp \
+		../DizzyGame/Actions/cactionmessage.cpp \
+		../DizzyGame/Actions/cactionmove.cpp \
+		../DizzyGame/Actions/cactionpickup.cpp \
+		../DizzyGame/Actions/cactionsetanimationstep.cpp \
+		../DizzyGame/Actions/cactionsetenabled.cpp \
+		../DizzyGame/Actions/cactionsingle.cpp \
+		../DizzyGame/Actions/iaction.cpp \
+		../DizzyGame/Conditionals/cconditionalofdizzyintersection.cpp \
+		../DizzyGame/Conditionals/cconditionalofintersection.cpp \
+		../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.cpp \
+		../DizzyGame/Conditionals/cconditionalofpickup.cpp \
+		../DizzyGame/Conditionals/cconditionaloftimer.cpp \
+		../DizzyGame/Conditionals/cconditionalofuse.cpp \
+		../DizzyGame/Conditionals/iconditionalexpression.cpp \
+		../DizzyGame/Game/cdizzy.cpp \
+		../DizzyGame/Game/cgame.cpp \
+		../DizzyGame/Game/cgamestate.cpp \
+		../DizzyGame/Game/cpart.cpp \
+		../DizzyGame/Game/ipart.cpp \
+		../DizzyGame/Graphics/cfontprinter.cpp \
+		../DizzyGame/Graphics/csprite.cpp \
+		../DizzyGame/Graphics/ctile.cpp \
+		../DizzyGame/Graphics/ctilessequence.cpp \
+		../DizzyGame/Graphics/tga.cpp \
+		../DizzyGame/IO/craiifilein.cpp \
+		../DizzyGame/IO/craiifileout.cpp \
+		../DizzyGame/Interpreter/cautomath.cpp \
+		../DizzyGame/Interpreter/clexeme.cpp \
+		../DizzyGame/Interpreter/clexicalanalyzer.cpp \
+		../DizzyGame/Interpreter/csyntaxanalyzer.cpp \
+		../DizzyGame/QtWindows/cmainwindow.cpp \
+		../DizzyGame/QtWindows/main.cpp \
+		../DizzyGame/System/system.cpp \
+		../DizzyGame/Video/cvideo_software.cpp \
+		../DizzyGame/Video/ivideo.cpp moc_cmainwindow.cpp
+OBJECTS       = cactionadditem.o \
 		cactionaddlife.o \
 		cactionaddscore.o \
 		cactionchangeanimationmode.o \
@@ -119,36 +117,37 @@ OBJECTS       = main.o \
 		cactionsetanimationstep.o \
 		cactionsetenabled.o \
 		cactionsingle.o \
-		cautomath.o \
+		iaction.o \
 		cconditionalofdizzyintersection.o \
 		cconditionalofintersection.o \
 		cconditionalofnotdizzyintersection.o \
 		cconditionalofpickup.o \
 		cconditionaloftimer.o \
 		cconditionalofuse.o \
+		iconditionalexpression.o \
 		cdizzy.o \
-		cfontprinter.o \
 		cgame.o \
 		cgamestate.o \
-		clexeme.o \
-		clexicalanalyzer.o \
 		cpart.o \
-		craiifilein.o \
-		craiifileout.o \
+		ipart.o \
+		cfontprinter.o \
 		csprite.o \
-		csyntaxanalyzer.o \
 		ctile.o \
 		ctilessequence.o \
-		cvideo_software.o \
-		iaction.o \
-		iconditionalexpression.o \
-		ipart.o \
-		ivideo.o \
-		system.o \
 		tga.o \
+		craiifilein.o \
+		craiifileout.o \
+		cautomath.o \
+		clexeme.o \
+		clexicalanalyzer.o \
+		csyntaxanalyzer.o \
+		cmainwindow.o \
+		main.o \
+		system.o \
+		cvideo_software.o \
+		ivideo.o \
 		moc_cmainwindow.o
-DIST          = ../DizzyGame/license.txt \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -223,98 +222,98 @@ DIST          = ../DizzyGame/license.txt \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		../DizzyGame/DizzyGame.pro ../DizzyGame/cmainwindow.h \
-		../DizzyGame/cactionadditem.h \
-		../DizzyGame/cactionaddlife.h \
-		../DizzyGame/cactionaddscore.h \
-		../DizzyGame/cactionchangeanimationmode.h \
-		../DizzyGame/cactionchangedescription.h \
-		../DizzyGame/cactionchangedescriptionglobal.h \
-		../DizzyGame/cactionchangename.h \
-		../DizzyGame/cactionchangenameglobal.h \
-		../DizzyGame/cactionchangeposition.h \
-		../DizzyGame/cactioncopyposition.h \
-		../DizzyGame/cactioncopypositionoffset.h \
-		../DizzyGame/cactionenergyupdate.h \
-		../DizzyGame/cactionmessage.h \
-		../DizzyGame/cactionmove.h \
-		../DizzyGame/cactionpickup.h \
-		../DizzyGame/cactionsetanimationstep.h \
-		../DizzyGame/cactionsetenabled.h \
-		../DizzyGame/cactionsingle.h \
-		../DizzyGame/cautomath.h \
-		../DizzyGame/cconditionalofdizzyintersection.h \
-		../DizzyGame/cconditionalofintersection.h \
-		../DizzyGame/cconditionalofnotdizzyintersection.h \
-		../DizzyGame/cconditionalofpickup.h \
-		../DizzyGame/cconditionaloftimer.h \
-		../DizzyGame/cconditionalofuse.h \
-		../DizzyGame/cdizzy.h \
-		../DizzyGame/cfontprinter.h \
-		../DizzyGame/cgame.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/clexeme.h \
-		../DizzyGame/clexicalanalyzer.h \
-		../DizzyGame/cpart.h \
-		../DizzyGame/craiifilein.h \
-		../DizzyGame/craiifileout.h \
-		../DizzyGame/csprite.h \
-		../DizzyGame/csyntaxanalyzer.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/cvideo_software.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/system.h \
-		../DizzyGame/tga.h ../DizzyGame/main.cpp \
-		../DizzyGame/cmainwindow.cpp \
-		../DizzyGame/cactionadditem.cpp \
-		../DizzyGame/cactionaddlife.cpp \
-		../DizzyGame/cactionaddscore.cpp \
-		../DizzyGame/cactionchangeanimationmode.cpp \
-		../DizzyGame/cactionchangedescription.cpp \
-		../DizzyGame/cactionchangedescriptionglobal.cpp \
-		../DizzyGame/cactionchangename.cpp \
-		../DizzyGame/cactionchangenameglobal.cpp \
-		../DizzyGame/cactionchangeposition.cpp \
-		../DizzyGame/cactioncopyposition.cpp \
-		../DizzyGame/cactioncopypositionoffset.cpp \
-		../DizzyGame/cactionenergyupdate.cpp \
-		../DizzyGame/cactionmessage.cpp \
-		../DizzyGame/cactionmove.cpp \
-		../DizzyGame/cactionpickup.cpp \
-		../DizzyGame/cactionsetanimationstep.cpp \
-		../DizzyGame/cactionsetenabled.cpp \
-		../DizzyGame/cactionsingle.cpp \
-		../DizzyGame/cautomath.cpp \
-		../DizzyGame/cconditionalofdizzyintersection.cpp \
-		../DizzyGame/cconditionalofintersection.cpp \
-		../DizzyGame/cconditionalofnotdizzyintersection.cpp \
-		../DizzyGame/cconditionalofpickup.cpp \
-		../DizzyGame/cconditionaloftimer.cpp \
-		../DizzyGame/cconditionalofuse.cpp \
-		../DizzyGame/cdizzy.cpp \
-		../DizzyGame/cfontprinter.cpp \
-		../DizzyGame/cgame.cpp \
-		../DizzyGame/cgamestate.cpp \
-		../DizzyGame/clexeme.cpp \
-		../DizzyGame/clexicalanalyzer.cpp \
-		../DizzyGame/cpart.cpp \
-		../DizzyGame/craiifilein.cpp \
-		../DizzyGame/craiifileout.cpp \
-		../DizzyGame/csprite.cpp \
-		../DizzyGame/csyntaxanalyzer.cpp \
-		../DizzyGame/ctile.cpp \
-		../DizzyGame/ctilessequence.cpp \
-		../DizzyGame/cvideo_software.cpp \
-		../DizzyGame/iaction.cpp \
-		../DizzyGame/iconditionalexpression.cpp \
-		../DizzyGame/ipart.cpp \
-		../DizzyGame/ivideo.cpp \
-		../DizzyGame/system.cpp \
-		../DizzyGame/tga.cpp
+		../DizzyGame/DizzyGame.pro ../DizzyGame/Actions/cactionadditem.h \
+		../DizzyGame/Actions/cactionaddlife.h \
+		../DizzyGame/Actions/cactionaddscore.h \
+		../DizzyGame/Actions/cactionchangeanimationmode.h \
+		../DizzyGame/Actions/cactionchangedescription.h \
+		../DizzyGame/Actions/cactionchangedescriptionglobal.h \
+		../DizzyGame/Actions/cactionchangename.h \
+		../DizzyGame/Actions/cactionchangenameglobal.h \
+		../DizzyGame/Actions/cactionchangeposition.h \
+		../DizzyGame/Actions/cactioncopyposition.h \
+		../DizzyGame/Actions/cactioncopypositionoffset.h \
+		../DizzyGame/Actions/cactionenergyupdate.h \
+		../DizzyGame/Actions/cactionmessage.h \
+		../DizzyGame/Actions/cactionmove.h \
+		../DizzyGame/Actions/cactionpickup.h \
+		../DizzyGame/Actions/cactionsetanimationstep.h \
+		../DizzyGame/Actions/cactionsetenabled.h \
+		../DizzyGame/Actions/cactionsingle.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Conditionals/cconditionalofdizzyintersection.h \
+		../DizzyGame/Conditionals/cconditionalofintersection.h \
+		../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.h \
+		../DizzyGame/Conditionals/cconditionalofpickup.h \
+		../DizzyGame/Conditionals/cconditionaloftimer.h \
+		../DizzyGame/Conditionals/cconditionalofuse.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/cdizzy.h \
+		../DizzyGame/Game/cgame.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Game/cpart.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/cfontprinter.h \
+		../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/tga.h \
+		../DizzyGame/IO/craiifilein.h \
+		../DizzyGame/IO/craiifileout.h \
+		../DizzyGame/Interpreter/cautomath.h \
+		../DizzyGame/Interpreter/clexeme.h \
+		../DizzyGame/Interpreter/clexicalanalyzer.h \
+		../DizzyGame/Interpreter/csyntaxanalyzer.h \
+		../DizzyGame/QtWindows/cmainwindow.h \
+		../DizzyGame/System/system.h \
+		../DizzyGame/Video/cvideo_software.h \
+		../DizzyGame/Video/ivideo.h ../DizzyGame/Actions/cactionadditem.cpp \
+		../DizzyGame/Actions/cactionaddlife.cpp \
+		../DizzyGame/Actions/cactionaddscore.cpp \
+		../DizzyGame/Actions/cactionchangeanimationmode.cpp \
+		../DizzyGame/Actions/cactionchangedescription.cpp \
+		../DizzyGame/Actions/cactionchangedescriptionglobal.cpp \
+		../DizzyGame/Actions/cactionchangename.cpp \
+		../DizzyGame/Actions/cactionchangenameglobal.cpp \
+		../DizzyGame/Actions/cactionchangeposition.cpp \
+		../DizzyGame/Actions/cactioncopyposition.cpp \
+		../DizzyGame/Actions/cactioncopypositionoffset.cpp \
+		../DizzyGame/Actions/cactionenergyupdate.cpp \
+		../DizzyGame/Actions/cactionmessage.cpp \
+		../DizzyGame/Actions/cactionmove.cpp \
+		../DizzyGame/Actions/cactionpickup.cpp \
+		../DizzyGame/Actions/cactionsetanimationstep.cpp \
+		../DizzyGame/Actions/cactionsetenabled.cpp \
+		../DizzyGame/Actions/cactionsingle.cpp \
+		../DizzyGame/Actions/iaction.cpp \
+		../DizzyGame/Conditionals/cconditionalofdizzyintersection.cpp \
+		../DizzyGame/Conditionals/cconditionalofintersection.cpp \
+		../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.cpp \
+		../DizzyGame/Conditionals/cconditionalofpickup.cpp \
+		../DizzyGame/Conditionals/cconditionaloftimer.cpp \
+		../DizzyGame/Conditionals/cconditionalofuse.cpp \
+		../DizzyGame/Conditionals/iconditionalexpression.cpp \
+		../DizzyGame/Game/cdizzy.cpp \
+		../DizzyGame/Game/cgame.cpp \
+		../DizzyGame/Game/cgamestate.cpp \
+		../DizzyGame/Game/cpart.cpp \
+		../DizzyGame/Game/ipart.cpp \
+		../DizzyGame/Graphics/cfontprinter.cpp \
+		../DizzyGame/Graphics/csprite.cpp \
+		../DizzyGame/Graphics/ctile.cpp \
+		../DizzyGame/Graphics/ctilessequence.cpp \
+		../DizzyGame/Graphics/tga.cpp \
+		../DizzyGame/IO/craiifilein.cpp \
+		../DizzyGame/IO/craiifileout.cpp \
+		../DizzyGame/Interpreter/cautomath.cpp \
+		../DizzyGame/Interpreter/clexeme.cpp \
+		../DizzyGame/Interpreter/clexicalanalyzer.cpp \
+		../DizzyGame/Interpreter/csyntaxanalyzer.cpp \
+		../DizzyGame/QtWindows/cmainwindow.cpp \
+		../DizzyGame/QtWindows/main.cpp \
+		../DizzyGame/System/system.cpp \
+		../DizzyGame/Video/cvideo_software.cpp \
+		../DizzyGame/Video/ivideo.cpp
 QMAKE_TARGET  = DizzyGame
 DESTDIR       = 
 TARGET        = DizzyGame
@@ -494,8 +493,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../DizzyGame/cmainwindow.h ../DizzyGame/cactionadditem.h ../DizzyGame/cactionaddlife.h ../DizzyGame/cactionaddscore.h ../DizzyGame/cactionchangeanimationmode.h ../DizzyGame/cactionchangedescription.h ../DizzyGame/cactionchangedescriptionglobal.h ../DizzyGame/cactionchangename.h ../DizzyGame/cactionchangenameglobal.h ../DizzyGame/cactionchangeposition.h ../DizzyGame/cactioncopyposition.h ../DizzyGame/cactioncopypositionoffset.h ../DizzyGame/cactionenergyupdate.h ../DizzyGame/cactionmessage.h ../DizzyGame/cactionmove.h ../DizzyGame/cactionpickup.h ../DizzyGame/cactionsetanimationstep.h ../DizzyGame/cactionsetenabled.h ../DizzyGame/cactionsingle.h ../DizzyGame/cautomath.h ../DizzyGame/cconditionalofdizzyintersection.h ../DizzyGame/cconditionalofintersection.h ../DizzyGame/cconditionalofnotdizzyintersection.h ../DizzyGame/cconditionalofpickup.h ../DizzyGame/cconditionaloftimer.h ../DizzyGame/cconditionalofuse.h ../DizzyGame/cdizzy.h ../DizzyGame/cfontprinter.h ../DizzyGame/cgame.h ../DizzyGame/cgamestate.h ../DizzyGame/clexeme.h ../DizzyGame/clexicalanalyzer.h ../DizzyGame/cpart.h ../DizzyGame/craiifilein.h ../DizzyGame/craiifileout.h ../DizzyGame/csprite.h ../DizzyGame/csyntaxanalyzer.h ../DizzyGame/ctile.h ../DizzyGame/ctilessequence.h ../DizzyGame/cvideo_software.h ../DizzyGame/iaction.h ../DizzyGame/iconditionalexpression.h ../DizzyGame/ipart.h ../DizzyGame/ivideo.h ../DizzyGame/system.h ../DizzyGame/tga.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../DizzyGame/main.cpp ../DizzyGame/cmainwindow.cpp ../DizzyGame/cactionadditem.cpp ../DizzyGame/cactionaddlife.cpp ../DizzyGame/cactionaddscore.cpp ../DizzyGame/cactionchangeanimationmode.cpp ../DizzyGame/cactionchangedescription.cpp ../DizzyGame/cactionchangedescriptionglobal.cpp ../DizzyGame/cactionchangename.cpp ../DizzyGame/cactionchangenameglobal.cpp ../DizzyGame/cactionchangeposition.cpp ../DizzyGame/cactioncopyposition.cpp ../DizzyGame/cactioncopypositionoffset.cpp ../DizzyGame/cactionenergyupdate.cpp ../DizzyGame/cactionmessage.cpp ../DizzyGame/cactionmove.cpp ../DizzyGame/cactionpickup.cpp ../DizzyGame/cactionsetanimationstep.cpp ../DizzyGame/cactionsetenabled.cpp ../DizzyGame/cactionsingle.cpp ../DizzyGame/cautomath.cpp ../DizzyGame/cconditionalofdizzyintersection.cpp ../DizzyGame/cconditionalofintersection.cpp ../DizzyGame/cconditionalofnotdizzyintersection.cpp ../DizzyGame/cconditionalofpickup.cpp ../DizzyGame/cconditionaloftimer.cpp ../DizzyGame/cconditionalofuse.cpp ../DizzyGame/cdizzy.cpp ../DizzyGame/cfontprinter.cpp ../DizzyGame/cgame.cpp ../DizzyGame/cgamestate.cpp ../DizzyGame/clexeme.cpp ../DizzyGame/clexicalanalyzer.cpp ../DizzyGame/cpart.cpp ../DizzyGame/craiifilein.cpp ../DizzyGame/craiifileout.cpp ../DizzyGame/csprite.cpp ../DizzyGame/csyntaxanalyzer.cpp ../DizzyGame/ctile.cpp ../DizzyGame/ctilessequence.cpp ../DizzyGame/cvideo_software.cpp ../DizzyGame/iaction.cpp ../DizzyGame/iconditionalexpression.cpp ../DizzyGame/ipart.cpp ../DizzyGame/ivideo.cpp ../DizzyGame/system.cpp ../DizzyGame/tga.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../DizzyGame/Actions/cactionadditem.h ../DizzyGame/Actions/cactionaddlife.h ../DizzyGame/Actions/cactionaddscore.h ../DizzyGame/Actions/cactionchangeanimationmode.h ../DizzyGame/Actions/cactionchangedescription.h ../DizzyGame/Actions/cactionchangedescriptionglobal.h ../DizzyGame/Actions/cactionchangename.h ../DizzyGame/Actions/cactionchangenameglobal.h ../DizzyGame/Actions/cactionchangeposition.h ../DizzyGame/Actions/cactioncopyposition.h ../DizzyGame/Actions/cactioncopypositionoffset.h ../DizzyGame/Actions/cactionenergyupdate.h ../DizzyGame/Actions/cactionmessage.h ../DizzyGame/Actions/cactionmove.h ../DizzyGame/Actions/cactionpickup.h ../DizzyGame/Actions/cactionsetanimationstep.h ../DizzyGame/Actions/cactionsetenabled.h ../DizzyGame/Actions/cactionsingle.h ../DizzyGame/Actions/iaction.h ../DizzyGame/Conditionals/cconditionalofdizzyintersection.h ../DizzyGame/Conditionals/cconditionalofintersection.h ../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.h ../DizzyGame/Conditionals/cconditionalofpickup.h ../DizzyGame/Conditionals/cconditionaloftimer.h ../DizzyGame/Conditionals/cconditionalofuse.h ../DizzyGame/Conditionals/iconditionalexpression.h ../DizzyGame/Game/cdizzy.h ../DizzyGame/Game/cgame.h ../DizzyGame/Game/cgamestate.h ../DizzyGame/Game/cpart.h ../DizzyGame/Game/ipart.h ../DizzyGame/Graphics/cfontprinter.h ../DizzyGame/Graphics/csprite.h ../DizzyGame/Graphics/ctile.h ../DizzyGame/Graphics/ctilessequence.h ../DizzyGame/Graphics/tga.h ../DizzyGame/IO/craiifilein.h ../DizzyGame/IO/craiifileout.h ../DizzyGame/Interpreter/cautomath.h ../DizzyGame/Interpreter/clexeme.h ../DizzyGame/Interpreter/clexicalanalyzer.h ../DizzyGame/Interpreter/csyntaxanalyzer.h ../DizzyGame/QtWindows/cmainwindow.h ../DizzyGame/System/system.h ../DizzyGame/Video/cvideo_software.h ../DizzyGame/Video/ivideo.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../DizzyGame/Actions/cactionadditem.cpp ../DizzyGame/Actions/cactionaddlife.cpp ../DizzyGame/Actions/cactionaddscore.cpp ../DizzyGame/Actions/cactionchangeanimationmode.cpp ../DizzyGame/Actions/cactionchangedescription.cpp ../DizzyGame/Actions/cactionchangedescriptionglobal.cpp ../DizzyGame/Actions/cactionchangename.cpp ../DizzyGame/Actions/cactionchangenameglobal.cpp ../DizzyGame/Actions/cactionchangeposition.cpp ../DizzyGame/Actions/cactioncopyposition.cpp ../DizzyGame/Actions/cactioncopypositionoffset.cpp ../DizzyGame/Actions/cactionenergyupdate.cpp ../DizzyGame/Actions/cactionmessage.cpp ../DizzyGame/Actions/cactionmove.cpp ../DizzyGame/Actions/cactionpickup.cpp ../DizzyGame/Actions/cactionsetanimationstep.cpp ../DizzyGame/Actions/cactionsetenabled.cpp ../DizzyGame/Actions/cactionsingle.cpp ../DizzyGame/Actions/iaction.cpp ../DizzyGame/Conditionals/cconditionalofdizzyintersection.cpp ../DizzyGame/Conditionals/cconditionalofintersection.cpp ../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.cpp ../DizzyGame/Conditionals/cconditionalofpickup.cpp ../DizzyGame/Conditionals/cconditionaloftimer.cpp ../DizzyGame/Conditionals/cconditionalofuse.cpp ../DizzyGame/Conditionals/iconditionalexpression.cpp ../DizzyGame/Game/cdizzy.cpp ../DizzyGame/Game/cgame.cpp ../DizzyGame/Game/cgamestate.cpp ../DizzyGame/Game/cpart.cpp ../DizzyGame/Game/ipart.cpp ../DizzyGame/Graphics/cfontprinter.cpp ../DizzyGame/Graphics/csprite.cpp ../DizzyGame/Graphics/ctile.cpp ../DizzyGame/Graphics/ctilessequence.cpp ../DizzyGame/Graphics/tga.cpp ../DizzyGame/IO/craiifilein.cpp ../DizzyGame/IO/craiifileout.cpp ../DizzyGame/Interpreter/cautomath.cpp ../DizzyGame/Interpreter/clexeme.cpp ../DizzyGame/Interpreter/clexicalanalyzer.cpp ../DizzyGame/Interpreter/csyntaxanalyzer.cpp ../DizzyGame/QtWindows/cmainwindow.cpp ../DizzyGame/QtWindows/main.cpp ../DizzyGame/System/system.cpp ../DizzyGame/Video/cvideo_software.cpp ../DizzyGame/Video/ivideo.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../DizzyGame/cmainwindow.ui $(DISTDIR)/
 
 
@@ -526,26 +525,26 @@ compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -Wno-unused-parameter -std=c++11 -O2 -Wall -W -Wno-unused-parameter -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_cmainwindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_cmainwindow.cpp
-moc_cmainwindow.cpp: ../DizzyGame/cmainwindow.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/cgame.h \
-		../DizzyGame/cfontprinter.h \
-		../DizzyGame/csprite.h \
-		../DizzyGame/tga.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/cdizzy.h \
+moc_cmainwindow.cpp: ../DizzyGame/QtWindows/cmainwindow.h \
+		../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Game/cgame.h \
+		../DizzyGame/Graphics/cfontprinter.h \
+		../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Graphics/tga.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Game/cdizzy.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/da-nie/Working/Working/DizzyGame/build-DizzyGame-Desktop-Release/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/da-nie/Working/Working/DizzyGame/DizzyGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../DizzyGame/cmainwindow.h -o moc_cmainwindow.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/da-nie/Working/Working/DizzyGame/build-DizzyGame-Desktop-Release/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/da-nie/Working/Working/DizzyGame/DizzyGame -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../DizzyGame/QtWindows/cmainwindow.h -o moc_cmainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -568,392 +567,392 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../DizzyGame/main.cpp ../DizzyGame/cmainwindow.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/cgame.h \
-		../DizzyGame/cfontprinter.h \
-		../DizzyGame/csprite.h \
-		../DizzyGame/tga.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/cdizzy.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../DizzyGame/main.cpp
+cactionadditem.o: ../DizzyGame/Actions/cactionadditem.cpp ../DizzyGame/Actions/cactionadditem.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionadditem.o ../DizzyGame/Actions/cactionadditem.cpp
 
-cmainwindow.o: ../DizzyGame/cmainwindow.cpp ../DizzyGame/cmainwindow.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/cgame.h \
-		../DizzyGame/cfontprinter.h \
-		../DizzyGame/csprite.h \
-		../DizzyGame/tga.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/cdizzy.h \
+cactionaddlife.o: ../DizzyGame/Actions/cactionaddlife.cpp ../DizzyGame/Actions/cactionaddlife.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionaddlife.o ../DizzyGame/Actions/cactionaddlife.cpp
+
+cactionaddscore.o: ../DizzyGame/Actions/cactionaddscore.cpp ../DizzyGame/Actions/cactionaddscore.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionaddscore.o ../DizzyGame/Actions/cactionaddscore.cpp
+
+cactionchangeanimationmode.o: ../DizzyGame/Actions/cactionchangeanimationmode.cpp ../DizzyGame/Actions/cactionchangeanimationmode.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangeanimationmode.o ../DizzyGame/Actions/cactionchangeanimationmode.cpp
+
+cactionchangedescription.o: ../DizzyGame/Actions/cactionchangedescription.cpp ../DizzyGame/Actions/cactionchangedescription.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangedescription.o ../DizzyGame/Actions/cactionchangedescription.cpp
+
+cactionchangedescriptionglobal.o: ../DizzyGame/Actions/cactionchangedescriptionglobal.cpp ../DizzyGame/Actions/cactionchangedescriptionglobal.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangedescriptionglobal.o ../DizzyGame/Actions/cactionchangedescriptionglobal.cpp
+
+cactionchangename.o: ../DizzyGame/Actions/cactionchangename.cpp ../DizzyGame/Actions/cactionchangename.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangename.o ../DizzyGame/Actions/cactionchangename.cpp
+
+cactionchangenameglobal.o: ../DizzyGame/Actions/cactionchangenameglobal.cpp ../DizzyGame/Actions/cactionchangenameglobal.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangenameglobal.o ../DizzyGame/Actions/cactionchangenameglobal.cpp
+
+cactionchangeposition.o: ../DizzyGame/Actions/cactionchangeposition.cpp ../DizzyGame/Actions/cactionchangeposition.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangeposition.o ../DizzyGame/Actions/cactionchangeposition.cpp
+
+cactioncopyposition.o: ../DizzyGame/Actions/cactioncopyposition.cpp ../DizzyGame/Actions/cactioncopyposition.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactioncopyposition.o ../DizzyGame/Actions/cactioncopyposition.cpp
+
+cactioncopypositionoffset.o: ../DizzyGame/Actions/cactioncopypositionoffset.cpp ../DizzyGame/Actions/cactioncopypositionoffset.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactioncopypositionoffset.o ../DizzyGame/Actions/cactioncopypositionoffset.cpp
+
+cactionenergyupdate.o: ../DizzyGame/Actions/cactionenergyupdate.cpp ../DizzyGame/Actions/cactionenergyupdate.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionenergyupdate.o ../DizzyGame/Actions/cactionenergyupdate.cpp
+
+cactionmessage.o: ../DizzyGame/Actions/cactionmessage.cpp ../DizzyGame/Actions/cactionmessage.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionmessage.o ../DizzyGame/Actions/cactionmessage.cpp
+
+cactionmove.o: ../DizzyGame/Actions/cactionmove.cpp ../DizzyGame/Actions/cactionmove.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionmove.o ../DizzyGame/Actions/cactionmove.cpp
+
+cactionpickup.o: ../DizzyGame/Actions/cactionpickup.cpp ../DizzyGame/Actions/cactionpickup.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionpickup.o ../DizzyGame/Actions/cactionpickup.cpp
+
+cactionsetanimationstep.o: ../DizzyGame/Actions/cactionsetanimationstep.cpp ../DizzyGame/Actions/cactionsetanimationstep.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionsetanimationstep.o ../DizzyGame/Actions/cactionsetanimationstep.cpp
+
+cactionsetenabled.o: ../DizzyGame/Actions/cactionsetenabled.cpp ../DizzyGame/Actions/cactionsetenabled.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionsetenabled.o ../DizzyGame/Actions/cactionsetenabled.cpp
+
+cactionsingle.o: ../DizzyGame/Actions/cactionsingle.cpp ../DizzyGame/Actions/cactionsingle.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionsingle.o ../DizzyGame/Actions/cactionsingle.cpp
+
+iaction.o: ../DizzyGame/Actions/iaction.cpp ../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iaction.o ../DizzyGame/Actions/iaction.cpp
+
+cconditionalofdizzyintersection.o: ../DizzyGame/Conditionals/cconditionalofdizzyintersection.cpp ../DizzyGame/Conditionals/cconditionalofdizzyintersection.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofdizzyintersection.o ../DizzyGame/Conditionals/cconditionalofdizzyintersection.cpp
+
+cconditionalofintersection.o: ../DizzyGame/Conditionals/cconditionalofintersection.cpp ../DizzyGame/Conditionals/cconditionalofintersection.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofintersection.o ../DizzyGame/Conditionals/cconditionalofintersection.cpp
+
+cconditionalofnotdizzyintersection.o: ../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.cpp ../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofnotdizzyintersection.o ../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.cpp
+
+cconditionalofpickup.o: ../DizzyGame/Conditionals/cconditionalofpickup.cpp ../DizzyGame/Conditionals/cconditionalofpickup.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofpickup.o ../DizzyGame/Conditionals/cconditionalofpickup.cpp
+
+cconditionaloftimer.o: ../DizzyGame/Conditionals/cconditionaloftimer.cpp ../DizzyGame/Conditionals/cconditionaloftimer.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionaloftimer.o ../DizzyGame/Conditionals/cconditionaloftimer.cpp
+
+cconditionalofuse.o: ../DizzyGame/Conditionals/cconditionalofuse.cpp ../DizzyGame/Conditionals/cconditionalofuse.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofuse.o ../DizzyGame/Conditionals/cconditionalofuse.cpp
+
+iconditionalexpression.o: ../DizzyGame/Conditionals/iconditionalexpression.cpp ../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iconditionalexpression.o ../DizzyGame/Conditionals/iconditionalexpression.cpp
+
+cdizzy.o: ../DizzyGame/Game/cdizzy.cpp ../DizzyGame/Game/cdizzy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cdizzy.o ../DizzyGame/Game/cdizzy.cpp
+
+cgame.o: ../DizzyGame/Game/cgame.cpp ../DizzyGame/Game/cgame.h \
+		../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Graphics/cfontprinter.h \
+		../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Graphics/tga.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Game/cdizzy.h \
+		../DizzyGame/Game/cpart.h \
+		../DizzyGame/Interpreter/csyntaxanalyzer.h \
+		../DizzyGame/Interpreter/clexicalanalyzer.h \
+		../DizzyGame/Interpreter/cautomath.h \
+		../DizzyGame/Interpreter/clexeme.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/System/system.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cgame.o ../DizzyGame/Game/cgame.cpp
+
+cgamestate.o: ../DizzyGame/Game/cgamestate.cpp ../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cgamestate.o ../DizzyGame/Game/cgamestate.cpp
+
+cpart.o: ../DizzyGame/Game/cpart.cpp ../DizzyGame/Game/cpart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Game/ipart.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cpart.o ../DizzyGame/Game/cpart.cpp
+
+ipart.o: ../DizzyGame/Game/ipart.cpp ../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ipart.o ../DizzyGame/Game/ipart.cpp
+
+cfontprinter.o: ../DizzyGame/Graphics/cfontprinter.cpp ../DizzyGame/Graphics/cfontprinter.h \
+		../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Graphics/tga.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cfontprinter.o ../DizzyGame/Graphics/cfontprinter.cpp
+
+csprite.o: ../DizzyGame/Graphics/csprite.cpp ../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Graphics/tga.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o csprite.o ../DizzyGame/Graphics/csprite.cpp
+
+ctile.o: ../DizzyGame/Graphics/ctile.cpp ../DizzyGame/Graphics/ctile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ctile.o ../DizzyGame/Graphics/ctile.cpp
+
+ctilessequence.o: ../DizzyGame/Graphics/ctilessequence.cpp ../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ctilessequence.o ../DizzyGame/Graphics/ctilessequence.cpp
+
+tga.o: ../DizzyGame/Graphics/tga.cpp ../DizzyGame/Graphics/tga.h \
+		../DizzyGame/IO/craiifilein.h \
+		../DizzyGame/IO/craiifileout.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tga.o ../DizzyGame/Graphics/tga.cpp
+
+craiifilein.o: ../DizzyGame/IO/craiifilein.cpp ../DizzyGame/IO/craiifilein.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o craiifilein.o ../DizzyGame/IO/craiifilein.cpp
+
+craiifileout.o: ../DizzyGame/IO/craiifileout.cpp ../DizzyGame/IO/craiifileout.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o craiifileout.o ../DizzyGame/IO/craiifileout.cpp
+
+cautomath.o: ../DizzyGame/Interpreter/cautomath.cpp ../DizzyGame/Interpreter/cautomath.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cautomath.o ../DizzyGame/Interpreter/cautomath.cpp
+
+clexeme.o: ../DizzyGame/Interpreter/clexeme.cpp ../DizzyGame/Interpreter/clexeme.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o clexeme.o ../DizzyGame/Interpreter/clexeme.cpp
+
+clexicalanalyzer.o: ../DizzyGame/Interpreter/clexicalanalyzer.cpp ../DizzyGame/Interpreter/clexicalanalyzer.h \
+		../DizzyGame/Interpreter/cautomath.h \
+		../DizzyGame/Interpreter/clexeme.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o clexicalanalyzer.o ../DizzyGame/Interpreter/clexicalanalyzer.cpp
+
+csyntaxanalyzer.o: ../DizzyGame/Interpreter/csyntaxanalyzer.cpp ../DizzyGame/Interpreter/csyntaxanalyzer.h \
+		../DizzyGame/Interpreter/clexicalanalyzer.h \
+		../DizzyGame/Interpreter/cautomath.h \
+		../DizzyGame/Interpreter/clexeme.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Actions/iaction.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Conditionals/cconditionalofintersection.h \
+		../DizzyGame/Conditionals/cconditionalofdizzyintersection.h \
+		../DizzyGame/Conditionals/cconditionalofnotdizzyintersection.h \
+		../DizzyGame/Conditionals/cconditionalofuse.h \
+		../DizzyGame/Conditionals/cconditionalofpickup.h \
+		../DizzyGame/Conditionals/cconditionaloftimer.h \
+		../DizzyGame/Actions/cactionchangename.h \
+		../DizzyGame/Actions/cactionchangenameglobal.h \
+		../DizzyGame/Actions/cactionchangedescription.h \
+		../DizzyGame/Actions/cactionchangedescriptionglobal.h \
+		../DizzyGame/Actions/cactioncopyposition.h \
+		../DizzyGame/Actions/cactioncopypositionoffset.h \
+		../DizzyGame/Actions/cactionchangeposition.h \
+		../DizzyGame/Actions/cactionsetanimationstep.h \
+		../DizzyGame/Actions/cactionmessage.h \
+		../DizzyGame/Actions/cactionsingle.h \
+		../DizzyGame/Actions/cactionsetenabled.h \
+		../DizzyGame/Actions/cactionpickup.h \
+		../DizzyGame/Actions/cactionmove.h \
+		../DizzyGame/Actions/cactionenergyupdate.h \
+		../DizzyGame/Actions/cactionaddlife.h \
+		../DizzyGame/Actions/cactionaddscore.h \
+		../DizzyGame/Actions/cactionadditem.h \
+		../DizzyGame/Actions/cactionchangeanimationmode.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o csyntaxanalyzer.o ../DizzyGame/Interpreter/csyntaxanalyzer.cpp
+
+cmainwindow.o: ../DizzyGame/QtWindows/cmainwindow.cpp ../DizzyGame/QtWindows/cmainwindow.h \
+		../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Game/cgame.h \
+		../DizzyGame/Graphics/cfontprinter.h \
+		../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Graphics/tga.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Game/cdizzy.h \
 		ui_cmainwindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cmainwindow.o ../DizzyGame/cmainwindow.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cmainwindow.o ../DizzyGame/QtWindows/cmainwindow.cpp
 
-cactionadditem.o: ../DizzyGame/cactionadditem.cpp ../DizzyGame/cactionadditem.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionadditem.o ../DizzyGame/cactionadditem.cpp
+main.o: ../DizzyGame/QtWindows/main.cpp ../DizzyGame/QtWindows/cmainwindow.h \
+		../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Game/cgame.h \
+		../DizzyGame/Graphics/cfontprinter.h \
+		../DizzyGame/Graphics/csprite.h \
+		../DizzyGame/Graphics/tga.h \
+		../DizzyGame/Game/ipart.h \
+		../DizzyGame/Graphics/ctilessequence.h \
+		../DizzyGame/Graphics/ctile.h \
+		../DizzyGame/Conditionals/iconditionalexpression.h \
+		../DizzyGame/Game/cgamestate.h \
+		../DizzyGame/Game/cdizzy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../DizzyGame/QtWindows/main.cpp
 
-cactionaddlife.o: ../DizzyGame/cactionaddlife.cpp ../DizzyGame/cactionaddlife.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionaddlife.o ../DizzyGame/cactionaddlife.cpp
+system.o: ../DizzyGame/System/system.cpp ../DizzyGame/System/system.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o system.o ../DizzyGame/System/system.cpp
 
-cactionaddscore.o: ../DizzyGame/cactionaddscore.cpp ../DizzyGame/cactionaddscore.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionaddscore.o ../DizzyGame/cactionaddscore.cpp
+cvideo_software.o: ../DizzyGame/Video/cvideo_software.cpp ../DizzyGame/Video/cvideo_software.h \
+		../DizzyGame/Video/ivideo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cvideo_software.o ../DizzyGame/Video/cvideo_software.cpp
 
-cactionchangeanimationmode.o: ../DizzyGame/cactionchangeanimationmode.cpp ../DizzyGame/cactionchangeanimationmode.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangeanimationmode.o ../DizzyGame/cactionchangeanimationmode.cpp
-
-cactionchangedescription.o: ../DizzyGame/cactionchangedescription.cpp ../DizzyGame/cactionchangedescription.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangedescription.o ../DizzyGame/cactionchangedescription.cpp
-
-cactionchangedescriptionglobal.o: ../DizzyGame/cactionchangedescriptionglobal.cpp ../DizzyGame/cactionchangedescriptionglobal.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangedescriptionglobal.o ../DizzyGame/cactionchangedescriptionglobal.cpp
-
-cactionchangename.o: ../DizzyGame/cactionchangename.cpp ../DizzyGame/cactionchangename.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangename.o ../DizzyGame/cactionchangename.cpp
-
-cactionchangenameglobal.o: ../DizzyGame/cactionchangenameglobal.cpp ../DizzyGame/cactionchangenameglobal.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangenameglobal.o ../DizzyGame/cactionchangenameglobal.cpp
-
-cactionchangeposition.o: ../DizzyGame/cactionchangeposition.cpp ../DizzyGame/cactionchangeposition.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionchangeposition.o ../DizzyGame/cactionchangeposition.cpp
-
-cactioncopyposition.o: ../DizzyGame/cactioncopyposition.cpp ../DizzyGame/cactioncopyposition.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactioncopyposition.o ../DizzyGame/cactioncopyposition.cpp
-
-cactioncopypositionoffset.o: ../DizzyGame/cactioncopypositionoffset.cpp ../DizzyGame/cactioncopypositionoffset.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactioncopypositionoffset.o ../DizzyGame/cactioncopypositionoffset.cpp
-
-cactionenergyupdate.o: ../DizzyGame/cactionenergyupdate.cpp ../DizzyGame/cactionenergyupdate.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionenergyupdate.o ../DizzyGame/cactionenergyupdate.cpp
-
-cactionmessage.o: ../DizzyGame/cactionmessage.cpp ../DizzyGame/cactionmessage.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionmessage.o ../DizzyGame/cactionmessage.cpp
-
-cactionmove.o: ../DizzyGame/cactionmove.cpp ../DizzyGame/cactionmove.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionmove.o ../DizzyGame/cactionmove.cpp
-
-cactionpickup.o: ../DizzyGame/cactionpickup.cpp ../DizzyGame/cactionpickup.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionpickup.o ../DizzyGame/cactionpickup.cpp
-
-cactionsetanimationstep.o: ../DizzyGame/cactionsetanimationstep.cpp ../DizzyGame/cactionsetanimationstep.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionsetanimationstep.o ../DizzyGame/cactionsetanimationstep.cpp
-
-cactionsetenabled.o: ../DizzyGame/cactionsetenabled.cpp ../DizzyGame/cactionsetenabled.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionsetenabled.o ../DizzyGame/cactionsetenabled.cpp
-
-cactionsingle.o: ../DizzyGame/cactionsingle.cpp ../DizzyGame/cactionsingle.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cactionsingle.o ../DizzyGame/cactionsingle.cpp
-
-cautomath.o: ../DizzyGame/cautomath.cpp ../DizzyGame/cautomath.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cautomath.o ../DizzyGame/cautomath.cpp
-
-cconditionalofdizzyintersection.o: ../DizzyGame/cconditionalofdizzyintersection.cpp ../DizzyGame/cconditionalofdizzyintersection.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofdizzyintersection.o ../DizzyGame/cconditionalofdizzyintersection.cpp
-
-cconditionalofintersection.o: ../DizzyGame/cconditionalofintersection.cpp ../DizzyGame/cconditionalofintersection.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofintersection.o ../DizzyGame/cconditionalofintersection.cpp
-
-cconditionalofnotdizzyintersection.o: ../DizzyGame/cconditionalofnotdizzyintersection.cpp ../DizzyGame/cconditionalofnotdizzyintersection.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofnotdizzyintersection.o ../DizzyGame/cconditionalofnotdizzyintersection.cpp
-
-cconditionalofpickup.o: ../DizzyGame/cconditionalofpickup.cpp ../DizzyGame/cconditionalofpickup.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofpickup.o ../DizzyGame/cconditionalofpickup.cpp
-
-cconditionaloftimer.o: ../DizzyGame/cconditionaloftimer.cpp ../DizzyGame/cconditionaloftimer.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionaloftimer.o ../DizzyGame/cconditionaloftimer.cpp
-
-cconditionalofuse.o: ../DizzyGame/cconditionalofuse.cpp ../DizzyGame/cconditionalofuse.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cconditionalofuse.o ../DizzyGame/cconditionalofuse.cpp
-
-cdizzy.o: ../DizzyGame/cdizzy.cpp ../DizzyGame/cdizzy.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cdizzy.o ../DizzyGame/cdizzy.cpp
-
-cfontprinter.o: ../DizzyGame/cfontprinter.cpp ../DizzyGame/cfontprinter.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/csprite.h \
-		../DizzyGame/tga.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cfontprinter.o ../DizzyGame/cfontprinter.cpp
-
-cgame.o: ../DizzyGame/cgame.cpp ../DizzyGame/cgame.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/cfontprinter.h \
-		../DizzyGame/csprite.h \
-		../DizzyGame/tga.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/cdizzy.h \
-		../DizzyGame/cpart.h \
-		../DizzyGame/csyntaxanalyzer.h \
-		../DizzyGame/clexicalanalyzer.h \
-		../DizzyGame/cautomath.h \
-		../DizzyGame/clexeme.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/system.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cgame.o ../DizzyGame/cgame.cpp
-
-cgamestate.o: ../DizzyGame/cgamestate.cpp ../DizzyGame/cgamestate.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cgamestate.o ../DizzyGame/cgamestate.cpp
-
-clexeme.o: ../DizzyGame/clexeme.cpp ../DizzyGame/clexeme.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o clexeme.o ../DizzyGame/clexeme.cpp
-
-clexicalanalyzer.o: ../DizzyGame/clexicalanalyzer.cpp ../DizzyGame/clexicalanalyzer.h \
-		../DizzyGame/cautomath.h \
-		../DizzyGame/clexeme.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o clexicalanalyzer.o ../DizzyGame/clexicalanalyzer.cpp
-
-cpart.o: ../DizzyGame/cpart.cpp ../DizzyGame/cpart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/ipart.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cpart.o ../DizzyGame/cpart.cpp
-
-craiifilein.o: ../DizzyGame/craiifilein.cpp ../DizzyGame/craiifilein.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o craiifilein.o ../DizzyGame/craiifilein.cpp
-
-craiifileout.o: ../DizzyGame/craiifileout.cpp ../DizzyGame/craiifileout.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o craiifileout.o ../DizzyGame/craiifileout.cpp
-
-csprite.o: ../DizzyGame/csprite.cpp ../DizzyGame/csprite.h \
-		../DizzyGame/ivideo.h \
-		../DizzyGame/tga.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o csprite.o ../DizzyGame/csprite.cpp
-
-csyntaxanalyzer.o: ../DizzyGame/csyntaxanalyzer.cpp ../DizzyGame/csyntaxanalyzer.h \
-		../DizzyGame/clexicalanalyzer.h \
-		../DizzyGame/cautomath.h \
-		../DizzyGame/clexeme.h \
-		../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/iaction.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/cconditionalofintersection.h \
-		../DizzyGame/cconditionalofdizzyintersection.h \
-		../DizzyGame/cconditionalofnotdizzyintersection.h \
-		../DizzyGame/cconditionalofuse.h \
-		../DizzyGame/cconditionalofpickup.h \
-		../DizzyGame/cconditionaloftimer.h \
-		../DizzyGame/cactionchangename.h \
-		../DizzyGame/cactionchangenameglobal.h \
-		../DizzyGame/cactionchangedescription.h \
-		../DizzyGame/cactionchangedescriptionglobal.h \
-		../DizzyGame/cactioncopyposition.h \
-		../DizzyGame/cactioncopypositionoffset.h \
-		../DizzyGame/cactionchangeposition.h \
-		../DizzyGame/cactionsetanimationstep.h \
-		../DizzyGame/cactionmessage.h \
-		../DizzyGame/cactionsingle.h \
-		../DizzyGame/cactionsetenabled.h \
-		../DizzyGame/cactionpickup.h \
-		../DizzyGame/cactionmove.h \
-		../DizzyGame/cactionenergyupdate.h \
-		../DizzyGame/cactionaddlife.h \
-		../DizzyGame/cactionaddscore.h \
-		../DizzyGame/cactionadditem.h \
-		../DizzyGame/cactionchangeanimationmode.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o csyntaxanalyzer.o ../DizzyGame/csyntaxanalyzer.cpp
-
-ctile.o: ../DizzyGame/ctile.cpp ../DizzyGame/ctile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ctile.o ../DizzyGame/ctile.cpp
-
-ctilessequence.o: ../DizzyGame/ctilessequence.cpp ../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ctilessequence.o ../DizzyGame/ctilessequence.cpp
-
-cvideo_software.o: ../DizzyGame/cvideo_software.cpp ../DizzyGame/cvideo_software.h \
-		../DizzyGame/ivideo.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cvideo_software.o ../DizzyGame/cvideo_software.cpp
-
-iaction.o: ../DizzyGame/iaction.cpp ../DizzyGame/iaction.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h \
-		../DizzyGame/cgamestate.h \
-		../DizzyGame/iconditionalexpression.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iaction.o ../DizzyGame/iaction.cpp
-
-iconditionalexpression.o: ../DizzyGame/iconditionalexpression.cpp ../DizzyGame/iconditionalexpression.h \
-		../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o iconditionalexpression.o ../DizzyGame/iconditionalexpression.cpp
-
-ipart.o: ../DizzyGame/ipart.cpp ../DizzyGame/ipart.h \
-		../DizzyGame/ctilessequence.h \
-		../DizzyGame/ctile.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ipart.o ../DizzyGame/ipart.cpp
-
-ivideo.o: ../DizzyGame/ivideo.cpp ../DizzyGame/ivideo.h \
-		../DizzyGame/cvideo_software.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ivideo.o ../DizzyGame/ivideo.cpp
-
-system.o: ../DizzyGame/system.cpp ../DizzyGame/system.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o system.o ../DizzyGame/system.cpp
-
-tga.o: ../DizzyGame/tga.cpp ../DizzyGame/tga.h \
-		../DizzyGame/craiifilein.h \
-		../DizzyGame/craiifileout.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tga.o ../DizzyGame/tga.cpp
+ivideo.o: ../DizzyGame/Video/ivideo.cpp ../DizzyGame/Video/ivideo.h \
+		../DizzyGame/Video/cvideo_software.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ivideo.o ../DizzyGame/Video/ivideo.cpp
 
 moc_cmainwindow.o: moc_cmainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_cmainwindow.o moc_cmainwindow.cpp

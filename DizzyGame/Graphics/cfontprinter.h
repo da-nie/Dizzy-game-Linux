@@ -1,21 +1,17 @@
-#ifndef C_SPRITE_H
-#define C_SPRITE_H
+#ifndef C_FONT_PRINTER_H
+#define C_FONT_PRINTER_H
 
 //****************************************************************************************************
-//Класс спрайтов
+//Класс печати заданным шрифтом
 //****************************************************************************************************
 
 //****************************************************************************************************
 //подключаемые библиотеки
 //****************************************************************************************************
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "../Video/ivideo.h"
+#include "csprite.h"
 #include <stdint.h>
-#include <memory>
-
-#include "ivideo.h"
-#include "tga.h"
+#include <string>
 
 //****************************************************************************************************
 //макроопределения
@@ -30,9 +26,9 @@
 //****************************************************************************************************
 
 //****************************************************************************************************
-//Класс спрайтов
+//Класс печати заданным шрифтом
 //****************************************************************************************************
-class CSprite
+class CFontPrinter
 {
  public:
   //-перечисления---------------------------------------------------------------------------------------
@@ -40,27 +36,19 @@ class CSprite
   //-константы------------------------------------------------------------------------------------------
  private:
   //-переменные-----------------------------------------------------------------------------------------
-  int32_t Width;//ширина
-  int32_t Height;//высота
-  std::unique_ptr<uint32_t[]> Data_Ptr;//указатель на данные спрайта
+  CSprite cSprite_Font;//спрайт шрифта
+  int32_t FontWidth;//ширина символа шрифта
+  int32_t FontHeight;//высота символа шрифта
  public:
   //-конструктор----------------------------------------------------------------------------------------
-  CSprite(void);
+  CFontPrinter(const std::string &file_name,int32_t font_width,int32_t font_height,uint8_t alpha_r,uint8_t alpha_g,uint8_t alpha_b);
   //-деструктор-----------------------------------------------------------------------------------------
-  ~CSprite();
+  ~CFontPrinter();
  public:
   //-открытые функции-----------------------------------------------------------------------------------
-  bool Load(const char *file_name);//загрузить спрайт
-  void Put(IVideo *iVideo_Ptr,int32_t x,int32_t y,bool alpha);//отобразить спрайт
-  void PutSpriteItem(IVideo *iVideo_Ptr,int32_t x,int32_t y,int32_t offsetx,int32_t offsety,int32_t width,int32_t height,bool alpha);//отобразить часть спрайта
-  bool IsCollizionSpriteItem(IVideo *iVideo_Ptr,int32_t x,int32_t y,int32_t offsetx,int32_t offsety,int32_t width,int32_t height,bool alpha,uint8_t back_r,uint8_t back_g,uint8_t back_b);//проверить на пересечение части спрайта с точками, отличными от фона
-  void PutSpriteItemMask(IVideo *iVideo_Ptr,int32_t x,int32_t y,int32_t offsetx,int32_t offsety,int32_t width,int32_t height,uint8_t *Mask);//отобразить часть спрайта с маской
-  void SetAlpha(uint8_t alpha,uint8_t r,uint8_t g,uint8_t b);//установить значение прозрачности
-  void Release(void);//удалить спрайт
-  int32_t GetWidth(void);//получить ширину спрайта
-  int32_t GetHeight(void);//получить высоту спрайта
-  void Normalize(void);//нормировать изображение спрайта
-  bool Save(char *file_name);//сохранить изображение спрайта
+  void PrintAt(int32_t x,int32_t y,const std::string &str,IVideo *iVideo_Ptr);//напечатать строку
+  int32_t GetFontWidth(void);//получить ширину шрифта
+  int32_t GetFontHeight(void);//получить высоту шрифта
  private:
   //-закрытые функции-----------------------------------------------------------------------------------  
 };
